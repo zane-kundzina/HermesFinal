@@ -1,0 +1,38 @@
+﻿@model HermesChatLoginUI.Models.ChatUser
+
+@{   
+    ViewData["Title"] = "SettingsTest";
+}
+
+<h1>User Settings</h1>
+
+<h4>Update your Profile Image</h4>
+<hr />
+<body>
+    <div class="row">
+    <div class="col-md-4">
+        <form asp-action="SettingsTest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>           
+            
+            <div class="form-group"> 
+                <label asp-for="ImagePath" ></label>
+                <input type="file" name="ImageFile" asp-for="ImagePath" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+
+<div>
+    <a asp-action="Chat">Back to Chat</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

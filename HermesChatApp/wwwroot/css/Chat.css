@@ -1,0 +1,183 @@
+﻿
+
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(74,10,237,1) 0%, rgba(197,105,209,1) 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    max-height:100vh;
+    overflow: hidden;
+}
+
+.container {
+    margin: auto;
+    background: #fff;
+    padding:0;
+    }
+
+.tall-col {
+    max-height:100vh;
+}
+
+.group-container {
+    overflow-y: auto; 
+    max-height:89%;
+}
+.profile-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+
+.profile-upload-pic {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 50px;
+}
+
+.settings-box {
+    background: rgb(231 203 248);
+    padding: 10px 10px;
+}
+
+i {
+    margin-top: 10px;
+    margin-left:14px;
+    color: gray;
+    transition: .3s;
+}
+
+i:hover {
+    color:rgb(121 53 163);
+    cursor: pointer;
+}
+
+.search-box {
+    background:rgb(240 225 250);
+    padding:10px 13px;
+}
+
+.input-wrapper {
+    background:#fff;
+    border-radius:40px;
+}
+
+input {
+    border:none;
+    border-radius: 40px;
+    width: 80%;
+}
+
+input::placeholder {
+    color: #e3e3e3;
+    font-weight:300;
+}
+
+input:focus {
+    outline:none;
+}
+
+.chatlist-item {
+    padding: 10px 15px;
+    display: flex;
+    vertical-align: baseline;
+    background: #fff;
+    transition: .3s ease;
+}
+
+.chatlist-item--pink {
+    background: rgb(231 203 248);
+}
+
+.chatlist-item--onhover:hover {
+    background: rgb(131 90 237);
+    cursor:pointer;
+}
+
+.text {
+    margin-left: 12px;
+    width: 70%;
+}
+
+h6 {
+    margin-top: 6px;
+    margin-bottom:0;
+}
+
+p {
+    margin: 0;
+}
+
+.time {
+    color:gray;
+}
+
+hr {
+    margin: 5px auto;
+    width: 100%;
+    color: #FFFF00;
+}
+
+/*---------------------Chat---------------------------*/
+
+.chat-bubble {
+    padding:10px 14px;
+    margin: 10px 30px;
+    border-radius: 9px;
+    position: relative;
+    background: rgba(197,105,209,1);
+    animation: fadein 1s ease-in;
+    color:azure;
+}
+
+.chat-bubble--right {
+    background:rgb(131 90 237);
+}
+
+.chat-box {
+    background: rgb(240 225 250);
+    display: flex;
+    align-items: center;
+    padding: 5px 12px;
+}
+
+.bottom-div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right:0;
+}
+
+.chat-info {
+    height: 40vh;
+    padding: 30px;
+}
+
+.group-picture {
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+    margin-top:25px;
+}
+
+.group-users {
+    padding: 10px 15px;
+    display: flex;
+    vertical-align: baseline;
+    font-weight:500;
+}
+
+.group-users:hover {
+    background: rgb(131 90 237);
+    cursor: pointer;
+}
+
+.fabutton {
+    background: none;
+    padding: 0px;
+    border: none;
+}

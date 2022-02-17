@@ -1,0 +1,155 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    Layout = null;
+}
+
+@model HermesChatLoginUI.Models.ChatViewModel
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Chat.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/d3814f3c81.js" crossorigin="anonymous" asp-append-version="true"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row no-gutters">
+
+            @*---Left group section---*@
+
+            <div class="col-md-3 border-right tall-col">
+                <div class="settings-box">
+                    <a href="#" title="@User.Identity.Name">
+                        @*---Here should be placed uploaded user picture--- src="@Url.Action("Chat", "Home")"*@
+                        <img class="profile-pic" src="~/pic/cool_cat.jpg" alt="Profile picture" />
+                    </a>
+                    @*---Logout button---*@
+                    <div class="float-right">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="nav-link btn btn-link text-white"><i class="fas fa-sign-out-alt fa-lg"></i></button>
+                        </form>
+                    </div>
+                </div>
+                @*---Search box---*@
+                <div class="search-box">
+                    <div class="input-wrapper">
+                        <i class="fa fa-search fas-lg"></i>
+                        <input type="text" placeholder="Search..." />
+                    </div>
+                </div>
+                <div class="group-container">
+                    @for (int i = 0; i < 16; i++)
+                    {
+                        <div class="chatlist-item chatlist-item--onhover">
+                            <img class="profile-pic" src="~/pic/mandarin.jpg" alt="Chat picture" />
+                            <div class="text">
+                                <h6>Mandarin Chat</h6>
+                                <p class="text-muted">Yes, let's do it! :)</p>
+                            </div>
+                            <span class="time text-muted small">14:38</span>
+                        </div>
+                        <hr>
+                    }
+                </div>
+            </div>
+
+            @*---Middle Chat section---*@
+
+            <div class="col-md-6 border-right tall-col">
+                <div class="chatlist-item chatlist-item--pink no-gutters">
+                    <img class="profile-pic" src="~/pic/mandarin.jpg" alt="Chat picture" />
+                    <div class="text">
+                        <h6>Mandarin Chat</h6>
+                        <p class="text-muted">Discussing very important citrusey topics!</p>
+                    </div>
+                    @*---Setting icon---*@
+                    <div class="settings-box">    
+                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Settings"><i class="fa fa-cog fa-lg"></i></a>
+                    </div>
+                     <div class="settings-box">    
+                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="SettingsTest"><i class="fa fa-cog fa-lg"></i></a>
+                    </div>
+                </div>
+                <div id="chatPanel" class="chat-panel group-container">
+                    @foreach (var msg in Model.ActiveChat.Messages)
+                    {
+                        @if (msg.Name == User.Identity.Name)
+                        {
+                            <div class="row no-gutters">
+                                <div class="col-md-5 offset-md-7">
+                                    <div class="chat-bubble chat-bubble--right" title="@msg.Timestamp">
+                                        @msg.Text
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row no-gutters">
+                                <div class="col-md-5">
+                                    <div class="chat-bubble chat-bubble--left" title="@msg.Timestamp">
+                                        @msg.Text
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row bottom-div">
+                    <div class="col-md-12">
+                        <div class="chat-box">
+                            <i class="fa fa-laugh fa-lg" style="margin:10px;"></i>
+                            @*---Message box---*@
+                            <form onsubmit="sendMessage(event)" asp-controller="Home" asp-action="CreateMessage">
+                                <input type="hidden" name="chatId" value="1">
+                                <input type="text" name="message" id="message-input" placeholder="Type your message...">
+                                <button type="submit" class="fabutton"><i class="fa fa-paper-plane fa-lg"></i></button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*---Right Info section---*@
+
+            <div class="col-md-3" style="background:rgb(231 203 248);">
+                <div class="row no-gutters">
+                    <div class="col-md-12" align="center">
+                        <img class="group-picture" src="~/pic/mandarin.jpg" alt="Group picture" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-md-12" align="center">
+                        <h3 style="display:inline-block; margin-top:25px; padding:5px;">Mandarin Chat</h3>
+                    </div>
+                </div>
+                <hr />
+                <div class="row no-gutters">
+                    <div class="col-md-12" align="center">
+                        <div class="chat-users">
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <div class="group-users">
+                                    <img class="profile-pic" src="~/pic/cool_cat.jpg" alt="Profile picture" />
+                                    <p style="margin:13px;">Kat Von Purr</p>
+                                </div>
+                                <hr />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@*---scroll chat to bottom---*@
+<script type="text/javascript">
+    var objDiv = document.getElementById("chatPanel");
+    objDiv.scrollTop = objDiv.scrollHeight;
+</script>
